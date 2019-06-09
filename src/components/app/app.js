@@ -16,8 +16,15 @@ import './app.css';
 export default class App extends Component {
 
     state = {
-        swapiService: new SwapiService()
+        swapiService: new SwapiService(),
+        isLoggedIn: false
     };
+
+    onLogin = () => {
+        this.setState({
+            isLoggedIn: true
+        });
+    }
 
     onServiceChange = () => {
         this.setState(({swapiService}) => {
@@ -30,6 +37,8 @@ export default class App extends Component {
     };
 
     render() {
+
+        const {isLoggedIn} = this.state;
 
         return (
             <ErrorBoundry>
@@ -48,11 +57,11 @@ export default class App extends Component {
                                        return <StarshipDetails itemId={id}/>
                                    }}/>
                             <Route path="/login" render={() => {
-                                return <LoginPage isLoggedIn={false} onLogin={() => {
-                                }}/>
+                                return <LoginPage isLoggedIn={isLoggedIn}
+                                                  onLogin={this.onLogin}/>
                             }}/>
                             <Route path="/secret" render={() => {
-                                return <SecretPage isLoggedIn={false}/>
+                                return <SecretPage isLoggedIn={isLoggedIn}/>
                             }}/>
 
                         </div>
