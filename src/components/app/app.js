@@ -7,7 +7,7 @@ import ErrorBoundry from '../error-boundry';
 import SwapiService from '../../services/swapi-service';
 import DummySwapiService from '../../services/dummy-swapi-service';
 
-import {PeoplePage, PlanetsPage, StarshipsPage} from '../pages';
+import {PeoplePage, PlanetsPage, StarshipsPage, SecretPage, LoginPage} from '../pages';
 import {SwapiServiceProvider} from '../swapi-service-context';
 import StarshipDetails from "../sw-components/starship-details.js";
 
@@ -47,6 +47,13 @@ export default class App extends Component {
                                        const {id} = match.params;
                                        return <StarshipDetails itemId={id}/>
                                    }}/>
+                            <Route path="/login" render={() => {
+                                return <LoginPage isLoggedIn={false} onLogin={() => {
+                                }}/>
+                            }}/>
+                            <Route path="/secret" render={() => {
+                                return <SecretPage isLoggedIn={false}/>
+                            }}/>
 
                         </div>
                     </Router>
