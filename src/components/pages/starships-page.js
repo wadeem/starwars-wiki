@@ -1,10 +1,11 @@
 import React from 'react';
 import {StarshipList} from '../sw-components';
+import {withRouter} from "react-router-dom";
 
-const StarshipsPage = () => {
+const StarshipsPage = ({history}) => {
     return (
-        <StarshipList onItemSelected={() => console.log("clicked starship page")}/>
+        <StarshipList onItemSelected={(itemId) => history.push(`/starships/${itemId}`)}/>
 
     );
 };
-export default StarshipsPage;
+export default withRouter(StarshipsPage);
